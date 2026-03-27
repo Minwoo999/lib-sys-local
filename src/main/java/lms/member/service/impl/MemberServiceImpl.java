@@ -36,4 +36,6 @@ public class MemberServiceImpl implements MemberService {
         }
         throw new RuntimeException("아이디 또는 비밀번호가 틀렸습니다.");
     }
+
+    
 }

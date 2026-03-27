@@ -6,22 +6,20 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import lms.model.MemberVO.LoginResponse;
+import lms.model.MemberVO;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         HttpSession session = request.getSession();
-        LoginResponse loginResponse = (LoginResponse) session.getAttribute("loginUser");
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
-        if (loginResponse == null) {
-            response.sendRedirect(request.getContextPath() + "/member/login");
-
+        if (loginUser == null) {
+            response.sendRedirect(request.getContextPath() + "/member/login.do");
             return false;
         }
 
         return true;
-
     }
 }

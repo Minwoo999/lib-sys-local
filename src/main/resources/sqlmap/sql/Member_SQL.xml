@@ -3,32 +3,12 @@
 
 <mapper namespace="lms.member.dao.MemberDAO">
 
+    <!-- 공통 -->
+    <!-- 1. 로그인 및 회원가입 -->
     <insert id="insertMember" useGeneratedKeys="true" keyProperty="memberId" keyColumn="MEMBER_ID">
     INSERT INTO MEMBER (LOGIN_ID, PASSWORD, NAME, EMAIL, PHONE)
     VALUES (#{loginId}, #{password}, #{name}, #{email}, #{phone})
     </insert>
-
-    <update id="updatePassword">
-    UPDATE MEMBER
-    SET PASSWORD = #{password}
-    WHERE MEMBER_ID = #{memberId}
-    </update>
-
-    <update id="updateMember">
-    UPDATE MEMBER
-        <set>
-            <if test="name != null">NAME = #{name},</if>
-            <if test="email != null">EMAIL = #{email},</if>
-            <if test="phone != null">PHONE = #{phone},</if>
-        </set>
-    WHERE MEMBER_ID = #{memberId}
-    </update>
-
-    <update id="updateStatus">
-    UPDATE MEMBER
-        SET MEMBER_STATUS = #{memberStatus}
-        WHERE MEMBER_ID = #{memberId}
-    </update>
 
     <select id="selectLoginId" resultType="Member">
     SELECT *
@@ -42,12 +22,42 @@
     WHERE LOGIN_ID = #{loginId}
     </select>
 
+    <!-- 2. 비밀번호 변경 -->
+    <update id="updatePassword">
+    UPDATE MEMBER
+    SET PASSWORD = #{password}
+    WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <!-- 3. 탈퇴 = 0 -->
+    <update id="updateStatus">
+    UPDATE MEMBER
+        SET MEMBER_STATUS = #{memberStatus}
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <!-- 4. 상태 수정 -->
+    <update id="updateMember">
+    UPDATE MEMBER
+        <set>
+            <if test="name != null">NAME = #{name},</if>
+            <if test="email != null">EMAIL = #{email},</if>
+            <if test="phone != null">PHONE = #{phone},</if>
+        </set>
+    WHERE MEMBER_ID = #{memberId}
+    </update>
+
+
+    <!-- 관리자 -->
+
+    <!-- 1. 회원 조회 -->
     <select id="selectId" resultType="Member">
     SELECT *
     FROM MEMBER
     WHERE MEMBER_ID = #{memberId}
     </select>
 
+    <!-- 2. 회원 목록 조회 -->
     <select id="selectMemberList" resultType="Member">
     SELECT MEMBER_ID, LOGIN_ID, NAME, EMAIL, PHONE, MEMBER_STATUS, IS_ADMIN, MEMBER_REG_DATE
     FROM MEMBER
