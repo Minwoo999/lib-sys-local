@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lms.member.dao.MemberDAO">
+
+    <insert id="insertMember" useGeneratedKeys="true" keyProperty="memberId" keyColumn="MEMBER_ID">
+    INSERT INTO MEMBER (LOGIN_ID, PASSWORD, NAME, EMAIL, PHONE)
+    VALUES (#{loginId}, #{password}, #{name}, #{email}, #{phone})
+    </insert>
+
+    <update id="updatePassword">
+    UPDATE MEMBER
+    SET PASSWORD = #{password}
+    WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <update id="updateMember">
+    UPDATE MEMBER
+        <set>
+            <if test="name != null">NAME = #{name},</if>
+            <if test="email != null">EMAIL = #{email},</if>
+            <if test="phone != null">PHONE = #{phone},</if>
+        </set>
+    WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <update id="updateStatus">
+    UPDATE MEMBER
+        SET MEMBER_STATUS = #{memberStatus}
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <select id="selectLoginId" resultType="Member">
+    SELECT *
+    FROM MEMBER
+    WHERE LOGIN_ID = #{loginId}
+    </select>
+
+    <select id="countLoginId" resultType="int">
+    SELECT COUNT(*)
+    FROM MEMBER
+    WHERE LOGIN_ID = #{loginId}
+    </select>
+
+    <select id="selectId" resultType="Member">
+    SELECT *
+    FROM MEMBER
+    WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <select id="selectMemberList" resultType="Member">
+    SELECT MEMBER_ID, LOGIN_ID, NAME, EMAIL, PHONE, MEMBER_STATUS, IS_ADMIN, MEMBER_REG_DATE
+    FROM MEMBER
+    ORDER BY MEMBER_REG_DATE DESC
+    </select>
+
+</mapper>

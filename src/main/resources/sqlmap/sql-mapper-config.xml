@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+
+		<typeAlias alias="Book" type="lms.model.BookVO"/>
+		<typeAlias alias="Member" type="lms.model.MemberVO"/>
+		<typeAlias alias="Loan" type="lms.model.LoanVO"/>
+		<typeAlias alias="Reservation" type="lms.model.ReservationVO"/>
+		<typeAlias alias="Category" type="lms.model.CategoryVO"/>
+		<typeAlias alias="Review" type="lms.model.ReviewVO"/>
+
+		<typeAlias alias="BookEnt" type="lms.model.entity.Book"/>
+		<typeAlias alias="MemberEnt" type="lms.model.entity.Member"/>
+		<typeAlias alias="LoanEnt" type="lms.model.entity.Loan"/>
+		<typeAlias alias="ReservationEnt" type="lms.model.entity.Reservation"/>
+		<typeAlias alias="CategoryEnt" type="lms.model.entity.Category"/>
+		<typeAlias alias="ReviewEnt" type="lms.model.entity.Review"/>
+	</typeAliases>
+
+</configuration>

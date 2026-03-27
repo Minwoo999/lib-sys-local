@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lms.book.dao.BookDAO">
+
+    <sql id="searchCondition">
+        <where>
+            <if test="title != null and title != ''"> 
+                AND TITLE LIKE CONCAT ('%', #{title}, '%')
+            </if>
+            <if test="author != null and author != ''"> 
+                AND AUTHOR LIKE CONCAT('%', #{author}, '%')
+            </if>
+            <if test="categoryCode != 0"> 
+                AND CATEGORY_CODE = #{categoryCode}
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="selectBookDetail" resultType="Book">
+    SELECT *
+    FROM Book
+    WHERE BOOK_ID = #{bookId}
+    </select>
+
+    <select id="selectBookList" resultType="Book">
+    SELECT * FROM (
+        SELECT T.*, ROWNUM AS RNUM FROM (
+            SELECT TITLE, AUTHOR, PUBLISHER, CATEGORY_CODE, CURRENT_CNT
+            FROM BOOK
+    <include refid="searchCondition"/>
+            ORDER BY TITLE ASC
+        ) T
+        WHERE ROWNUM <= #{firstIndex} + #{recordCount}
+    )
+    WHERE RNUM > #{firstIndex}
+    </select>
+
+    <select id="selectBookListCount" resultType="int">
+    SELECT COUNT(*)
+    FROM BOOK
+        <include refid="searchCondition"/>
+    </select>
+
+    <insert id="insertBook" useGeneratedKeys="true" keyProperty="bookId" keyColumn="BOOK_ID">
+    INSERT INTO BOOK (TITLE, AUTHOR, PUBLISHER, CATEGORY_CODE, BOOK_DESC, TOTAL_CNT)
+    VALUES (#{title}, #{author}, #{publisher}, #{categoryCode}, #{bookDesc}, #{totalCnt})
+    </insert>
+
+    <update id="updateBookDetail">
+    UPDATE BOOK
+        <set>
+            <if test="title != null "> TITLE = #{title},</if>
+            <if test="author != null"> AUTHOR = #{author},</if>
+            <if test="publisher != null"> PUBLISHER = #{publisher},</if>
+            <if test="categoryCode != 0"> CATEGORY_CODE = #{categoryCode},</if>
+            <if test="bookDesc != null">  BOOK_DESC= #{bookDesc},</if>
+        </set>
+        WHERE BOOK_ID = #{bookId}
+    </update>
+
+    <update id="updateBookStatus">
+    UPDATE BOOK
+        <set>
+            <if test="totalCnt != null"> TOTAL_CNT = #{totalCnt},</if>
+            <if test="currentCnt != null"> CURRENT_CNT = #{currentCnt},</if>
+            <if test="damagedCnt != null"> DAMAGED_CNT = #{damagedCnt},</if>
+        </set>
+        WHERE BOOK_ID = #{bookId}
+    </update>
+
+    <delete id="deleteBook">
+    DELETE FROM BOOK
+    WHERE BOOK_ID = #{bookId}
+    </delete>
+
+</mapper>
