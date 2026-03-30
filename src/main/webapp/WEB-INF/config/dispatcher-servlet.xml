@@ -25,6 +25,13 @@
 
         <bean class="lms.common.interceptor.LoginInterceptor"/>
     </mvc:interceptor>
+
+    <mvc:interceptor>
+        <mvc:mapping path="/admin/**"/>
+
+        <bean class="lms.common.interceptor.AdminInterceptor"/>
+    </mvc:interceptor>
+
 </mvc:interceptors>
 
     <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView" p:order="1"/>
