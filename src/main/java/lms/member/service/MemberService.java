@@ -14,4 +14,7 @@ public interface MemberService {
     int modifyPassword(MemberVO vo); // 비밀번호 변경
 
     int withdraw(int memberId); // 회원 탈퇴
+
+    // 3. 회원 상세 조회
+    MemberVO getMemberDetail(int memberId);
 }

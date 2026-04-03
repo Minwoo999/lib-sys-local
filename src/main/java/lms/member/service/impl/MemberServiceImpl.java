@@ -56,8 +56,16 @@ public class MemberServiceImpl implements MemberService {
     public int withdraw(int memberId) {
         MemberVO vo = new MemberVO();
         vo.setMemberId(memberId);
-        vo.setMemberStatus(0); 
+        vo.setMemberStatus(0);
 
         return memberDAO.updateStatus(vo);
     }
+    
+    // 6. 상세 조회
+    @Override
+    @Transactional(readOnly = true)
+    public MemberVO getMemberDetail(int memberId) {
+        return memberDAO.selectId(memberId);
+    }
+
 }

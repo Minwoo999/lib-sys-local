@@ -44,4 +44,5 @@ public class AdminMemberController {
         adminMemberService.updateMemberByAdmin(vo);
         return "redirect:/admin/memberDetail.do?memberId=" + vo.getMemberId();
     }
+    
 }

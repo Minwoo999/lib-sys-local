@@ -17,29 +17,29 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
     private final MemberDAO memberDAO;
 
-    // 전체 목록 조회 
+    // 전체 목록 조회
     @Override
     @Transactional(readOnly = true)
     public List<MemberVO> getMemberList() {
         return memberDAO.selectMemberList();
     }
 
-    // 상세 조회 
-    @Override
-    @Transactional(readOnly = true)
-    public MemberVO getMemberDetail(int memberId) {
-        return memberDAO.selectId(memberId);
-    }
-
-    // 상태 변경 
+    // 상태 변경
     @Override
     public int changeMemberStatus(MemberVO vo) {
         return memberDAO.updateStatus(vo);
     }
 
-    // 정보 수정 
+    // 정보 수정
     @Override
     public int updateMemberByAdmin(MemberVO vo) {
         return memberDAO.updateMember(vo);
+    }
+
+    // 상세 조회
+    @Override
+    @Transactional(readOnly = true)
+    public MemberVO getMemberDetail(int memberId) {
+        return memberDAO.selectId(memberId);
     }
 }
