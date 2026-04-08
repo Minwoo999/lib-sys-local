@@ -2,5 +2,13 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-<defi
+
+<definition name="admin/memberList" extends="adminLayout">
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/adminMemberList.jsp"/>
+</definition>
+
+<definition name="admin/memberDetail" extends="adminLayout">
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/adminMemberDetail.jsp"/>
+</definition>
+
 </tiles-definitions>
