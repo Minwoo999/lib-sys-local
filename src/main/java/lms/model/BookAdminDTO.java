@@ -1,4 +1,4 @@
-package lms.book.service;
+package lms.model;
 
 import java.time.LocalDateTime;
 

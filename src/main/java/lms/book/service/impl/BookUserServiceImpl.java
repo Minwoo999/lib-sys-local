@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import lms.book.dao.BookDAO;
 import lms.book.service.BookUserService;
-import lms.book.service.BookUserDTO.BookDetailUserResponse;
-import lms.book.service.BookUserDTO.BookListResponse;
-import lms.book.service.BookUserDTO.BookSearchRequest;
+import lms.model.BookUserDTO.BookDetailUserResponse;
+import lms.model.BookUserDTO.BookListResponse;
+import lms.model.BookUserDTO.BookSearchRequest;
 import lms.model.entity.Book;
 import lombok.RequiredArgsConstructor;
 

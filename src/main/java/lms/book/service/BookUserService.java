@@ -2,6 +2,8 @@ package lms.book.service;
 
 import java.util.Map;
 
+import lms.model.BookUserDTO;
+
 public interface BookUserService {
 
     BookUserDTO.BookDetailUserResponse findDetail(int bookId);

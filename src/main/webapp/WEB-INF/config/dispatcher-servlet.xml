@@ -15,24 +15,26 @@
 
     <mvc:annotation-driven />
 
-<mvc:interceptors>
-    <mvc:interceptor>
-        <mvc:mapping path="/**"/>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
 
-        <mvc:exclude-mapping path="/member/index.do"/>
-        <mvc:exclude-mapping path="/member/login.do"/>
-        <mvc:exclude-mapping path="/member/join.do"/>
+            <mvc:exclude-mapping path="/index.do"/>
+            <mvc:exclude-mapping path="/member/login.do"/>
+            <mvc:exclude-mapping path="/member/join.do"/>
+            <mvc:exclude-mapping path="/book/list.do"/>
+            <mvc:exclude-mapping path="/book/detail.do"/>
 
-        <bean class="lms.common.interceptor.LoginInterceptor"/>
-    </mvc:interceptor>
+            <bean class="lms.common.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
 
-    <mvc:interceptor>
-        <mvc:mapping path="/admin/**"/>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
 
-        <bean class="lms.common.interceptor.AdminInterceptor"/>
-    </mvc:interceptor>
+            <bean class="lms.common.interceptor.AdminInterceptor"/>
+        </mvc:interceptor>
 
-</mvc:interceptors>
+    </mvc:interceptors>
 
     <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView" p:order="1"/>
 

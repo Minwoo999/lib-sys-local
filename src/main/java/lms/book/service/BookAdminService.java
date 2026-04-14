@@ -1,5 +1,7 @@
 package lms.book.service;
 
+import lms.model.BookAdminDTO;
+
 public interface BookAdminService {
     int registerBook(BookAdminDTO.BookRegisterRequest registerRequest);
 

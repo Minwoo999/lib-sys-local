@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
-import lms.book.service.BookUserDTO;
+import lms.model.BookUserDTO;
 import lms.model.entity.Book;
 
 @Repository("bookDAO")

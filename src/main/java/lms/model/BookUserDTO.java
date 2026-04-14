@@ -1,4 +1,4 @@
-package lms.book.service;
+package lms.model;
 
 import lms.model.entity.Book;
 import lombok.AllArgsConstructor;

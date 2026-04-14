@@ -1,30 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<div style="width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
-    <h2 style="text-align: center;">로그인</h2>
+<div style="width: 500px; margin: 50px auto; padding: 30px; border: 1px solid #ccc; border-radius: 10px;">
+    <h2 style="text-align: center;">회원가입</h2>
 
-    <c:if test="${not empty msg}">
-        <p style="color: red; text-align: center; font-size: 0.9em;">${msg}</p>
-    </c:if>
-
-    <form action="<c:url value='/member/login.do'/>" method="post">
+    <form action="<c:url value='/member/join.do'/>" method="post">
         <div style="margin-bottom: 15px;">
-            <label for="loginId">아이디</label><br/>
-            <input type="text" id="loginId" name="loginId" style="width: 100%; padding: 8px;" required>
+            <label>아이디</label><br/>
+            <input type="text" name="loginId" style="width: 80%; padding: 8px;" required>
+            <button type="button" style="padding: 8px;">중복확인</button>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>비밀번호</label><br/>
+            <input type="password" name="password" style="width: 100%; padding: 8px;" required>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>이름</label><br/>
+            <input type="text" name="name" style="width: 100%; padding: 8px;" required>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>이메일</label><br/>
+            <input type="email" name="email" style="width: 100%; padding: 8px;" required>
         </div>
 
         <div style="margin-bottom: 20px;">
-            <label for="password">비밀번호</label><br/>
-            <input type="password" id="password" name="password" style="width: 100%; padding: 8px;" required>
+            <label>전화번호</label><br/>
+            <input type="tel" name="phone" placeholder="010-0000-0000" style="width: 100%; padding: 8px;" required>
         </div>
 
-        <button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            로그인
+        <button type="submit" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em;">
+            회원가입 완료
         </button>
     </form>
-
-    <div style="margin-top: 15px; text-align: center; font-size: 0.9em;">
-        아직 회원이 아니신가요? <a href="<c:url value='/member/join.do'/>">회원가입</a>
-    </div>
 </div>

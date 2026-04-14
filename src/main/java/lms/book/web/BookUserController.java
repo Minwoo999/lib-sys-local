@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lms.book.service.BookUserService;
-import lms.book.service.BookUserDTO.BookDetailUserResponse;
-import lms.book.service.BookUserDTO.BookSearchRequest;
+import lms.model.BookUserDTO.BookDetailUserResponse;
+import lms.model.BookUserDTO.BookSearchRequest;
 import lombok.RequiredArgsConstructor;
 
 @Controller
