@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberDAO memberDAO;
     private final PasswordEncoder passwordEncoder;
 
-    // 1. 회원가입 
+    // 1. 회원가입
     @Override
     public int join(MemberVO vo) {
         if (memberDAO.countLoginId(vo.getLoginId()) > 0) {
@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
         throw new RuntimeException("아이디 또는 비밀번호가 일치하지 않습니다.");
     }
 
-    // 3. 내 정보 수정 
+    // 3. 내 정보 수정
     @Override
     public int modifyMyInfo(MemberVO vo) {
         return memberDAO.updateMember(vo);
@@ -51,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.updatePassword(vo);
     }
 
-    // 5. 탈퇴 
+    // 5. 탈퇴
     @Override
     public int withdraw(int memberId) {
         MemberVO vo = new MemberVO();
@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 
         return memberDAO.updateStatus(vo);
     }
-    
+
     // 6. 상세 조회
     @Override
     @Transactional(readOnly = true)
