@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public interface OAuthService {
+public interface OauthService {
 
     // 1. 요청 URL 생성
     String getAuthorizationUrl(HttpSession session);
@@ -19,17 +19,15 @@ public interface OAuthService {
 
 
 
-
-
-
-
-
     // JSON 파서
-    default String extracProperty(String jsonResponse, String propertyName) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode rootNode = mapper.readTree(jsonResponse);
+    default String extractProperty(String jsonResponse, String propertyName) throws Exception {
+        // ObjectMapper mapper = new ObjectMapper();
+        // JsonNode rootNode = mapper.readTree(jsonResponse);
 
-        JsonNode node = rootNode.get(propertyName);
+        // JsonNode node = rootNode.get(propertyName);
+        
+        JsonNode node = new ObjectMapper().readTree(jsonResponse).get(propertyName);
+        
         if (node == null)
             return null;
 

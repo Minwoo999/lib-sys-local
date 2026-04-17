@@ -14,62 +14,61 @@ import org.springframework.stereotype.Service;
 import lms.member.service.OauthService;
 
 @Service
-public class NaverOauthService implements OauthService {
+public class KakaoOauthService implements OauthService {
 
-    @Value("${naver.client.id}")
+    @Value("${kakao.client.id}")
     private String clientId;
 
-    @Value("${naver.client.secret}")
+    @Value("${kakao.client.secret}")
     private String clientSecret;
 
-    @Value("${naver.redirect.uri}")
+    @Value("${kakao.redirect.uri}")
     private String redirectUri;
 
-    // 1. 인증요청
+    //
     @Override
     public String getAuthorizationUrl(HttpSession session) {
         String state = UUID.randomUUID().toString();
-
-        session.setAttribute("naver_state", state);
+        session.setAttribute("kakao_state", state);
 
         StringBuilder url = new StringBuilder();
-        url.append("https://nid.naver.com/oauth2.0/authorize");   // 1. 입구
-        url.append("?response_type=code");   // 2. 응답 데이터 형식
-        url.append("&client_id=" + clientId);   // 3. 내 ID(호출자) 
-        url.append("&redirect_uri=" + redirectUri);  // 4. 회신 주소
-        url.append("&state=" + state);   // 5. 요청 시작 해시값
+        url.append("https://kauth.kakao.com/oauth/authorize");
+        url.append("?response_type=code");
+        url.append("&client_id=" + clientId);
+        url.append("&redirect_uri=" + redirectUri);
+        url.append("&state=" + state);
 
         return url.toString();
     }
 
-    // 2. 토큰발급
+    //
     @Override
     public String getAccessToken(HttpSession session, String code, String state) throws Exception {
 
-        String sessionState = (String) session.getAttribute("naver_state");
+        String sessionState = (String) session.getAttribute("kakao_state");
         if (sessionState == null || !sessionState.equals(state)) {
-            throw new Exception("보안 인증 값이 일치하지 않습니다.");
+            throw new Exception("보안 인증값이 일치하지 않습니다.");
         }
 
         StringBuilder apiURL = new StringBuilder();
-        apiURL.append("https://nid.naver.com/oauth2.0/token");   // 1. 입구
-        apiURL.append("?grant_type=authorization_code");   // 2. 승인 코드 형식: 인증코드 
-        apiURL.append("&client_id=" + clientId);   
-        apiURL.append("&client_secret=" + clientSecret);   // 4. 비밀번호
-        apiURL.append("&code=" + code);   // 5. 받은 코드 다시 주기
-        apiURL.append("&state=" + state);   // 6. 해시 (한 번 더 검증)
+        apiURL.append("https://kauth.kakao.com/oauth/token");
+        apiURL.append("?grant_type=authorization_code");
+        apiURL.append("&client_id=" + clientId);
+        apiURL.append("&client_secret=" + clientSecret);
+        apiURL.append("&code=" + code);
 
         URL url = new URL(apiURL.toString());
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
+        con.setRequestMethod("POST");
 
         int responseCode = con.getResponseCode();
 
         BufferedReader br;
+
         if (responseCode == 200) {
             br = new BufferedReader(new InputStreamReader(con.getInputStream()));
         } else {
-            br = new BufferedReader((new InputStreamReader(con.getErrorStream())));
+            br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
         }
 
         String inputLine;
@@ -79,15 +78,12 @@ public class NaverOauthService implements OauthService {
         }
         br.close();
 
-        String jsonResponse = res.toString();
-        return extractProperty(jsonResponse, "access_token");
+        return extractProperty(res.toString(), "access_token");
     }
 
-
-    // 3. 프로필 가져오기
     @Override
     public String getUserProfile(String accessToken) throws Exception {
-        String apiURL = "https://openapi.naver.com/v1/nid/me";
+        String apiURL = "https://kapi.kakao.com/v2/user/me";
 
         URL url = new URL(apiURL);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
