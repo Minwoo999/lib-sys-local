@@ -6,12 +6,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberVO {
@@ -38,4 +36,8 @@ public class MemberVO {
 
     @NotBlank(message = "전화번호를 입력해주세요.")
     private String phone;
+
+    private int loginType = 0;
+
+    private String snsId;
 }

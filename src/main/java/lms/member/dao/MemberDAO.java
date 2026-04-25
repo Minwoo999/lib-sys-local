@@ -50,4 +50,14 @@ public class MemberDAO extends EgovAbstractMapper {
     public List<MemberVO> selectMemberList() {
         return selectList("MemberDAO.selectMemberList");
     }
+
+    // 소셜ID 조회
+    public MemberVO selectBySns(MemberVO memberVO) {
+        return selectOne("MemberDAO.selectBySns", memberVO);
+    }
+
+    // 소셜 이메일 중복 체크
+    public int countEmail(String email) {
+        return selectOne("MemberDAO.countEmail", email);
+    }
 }

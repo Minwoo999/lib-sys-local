@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public interface OauthService {
+public interface OAuthService {
 
     // 1. 요청 URL 생성
     String getAuthorizationUrl(HttpSession session);

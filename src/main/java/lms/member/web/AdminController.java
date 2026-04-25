@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lms.member.service.AdminMemberService;
+import lms.member.service.AdminService;
 import lms.model.MemberVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
-public class AdminMemberController {
+public class AdminController {
 
-    private final AdminMemberService adminMemberService;
+    private final AdminService adminMemberService;
 
     // 1. 회원 전체 목록 조회
     @GetMapping("/memberList.do")

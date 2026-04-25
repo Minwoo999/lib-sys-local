@@ -17,4 +17,7 @@ public interface MemberService {
 
     // 3. 회원 상세 조회
     MemberVO getMemberDetail(int memberId);
+
+    // 4. 소셜 로그인
+    MemberVO loginBySns(MemberVO snsUser) throws Exception;
 }

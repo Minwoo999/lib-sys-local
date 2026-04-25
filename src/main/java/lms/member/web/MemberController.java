@@ -71,6 +71,11 @@ public class MemberController {
     }
 
     // 4. 내 정보 수정
+    @GetMapping("/modify.do")
+    public String modifyForm() {
+        return "member/myPage";
+    }
+
     @PostMapping("/modify.do")
     public String modify(MemberVO vo, HttpSession session) {
         MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
@@ -81,6 +86,12 @@ public class MemberController {
     }
 
     // 5. 탈퇴 처리
+    @GetMapping("/withdraw.do")
+    public String withdrawForm() {
+        return "member/withdraw";
+
+    }
+
     @PostMapping("/withdraw.do")
     public String withdraw(HttpSession session) {
         MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");

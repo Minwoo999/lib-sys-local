@@ -6,8 +6,8 @@
     <!-- 공통 -->
     <!-- 1. 로그인 및 회원가입 -->
     <insert id="insertMember" useGeneratedKeys="true" keyProperty="memberId" keyColumn="MEMBER_ID">
-    INSERT INTO MEMBER (LOGIN_ID, PASSWORD, NAME, EMAIL, PHONE)
-    VALUES (#{loginId}, #{password}, #{name}, #{email}, #{phone})
+    INSERT INTO MEMBER (LOGIN_ID, PASSWORD, NAME, EMAIL, PHONE, LOGIN_TYPE, SNS_ID)
+    VALUES (#{loginId}, #{password}, #{name}, #{email}, #{phone}, #{loginType}, #{snsId})
     </insert>
 
     <select id="selectLoginId" resultType="Member">
@@ -53,6 +53,24 @@
     FROM MEMBER
     WHERE MEMBER_ID = #{memberId}
     </select>
+
+    <!-- 6. 소셜 회원 조회 -->
+    <select id="selectBySns" resultType="Member">
+    SELECT * 
+    FROM MEMBER
+    WHERE SNS_ID =#{snsId}
+        AND LOGIN_TYPE=#{loginType}
+    </select>
+
+    <!-- 7. 소셜 회원 중복 조회 -->
+    <select id="countEmail" resultType="int">
+    SELECT COUNT(*)
+    FROM MEMBER
+    WHERE EMAIL=#{email}
+    </select>
+    
+
+
 
     <!-- 관리자 -->
 

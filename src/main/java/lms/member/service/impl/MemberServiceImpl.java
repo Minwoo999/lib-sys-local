@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(rollbackFor = Exception.class)
 public class MemberServiceImpl implements MemberService {
 
     private final MemberDAO memberDAO;
@@ -29,7 +28,6 @@ public class MemberServiceImpl implements MemberService {
 
     // 2. 로그인
     @Override
-    @Transactional(readOnly = true)
     public MemberVO login(MemberVO vo) {
         MemberVO user = memberDAO.selectLoginId(vo.getLoginId());
         if (user != null && passwordEncoder.matches(vo.getPassword(), user.getPassword())) {
@@ -39,6 +37,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     // 3. 내 정보 수정
+    
     @Override
     public int modifyMyInfo(MemberVO vo) {
         return memberDAO.updateMember(vo);
@@ -63,9 +62,32 @@ public class MemberServiceImpl implements MemberService {
 
     // 6. 상세 조회
     @Override
-    @Transactional(readOnly = true)
     public MemberVO getMemberDetail(int memberId) {
         return memberDAO.selectId(memberId);
     }
 
+    // 7. 소셜 로그인
+    @Override
+    public MemberVO loginBySns(MemberVO snsUser) throws Exception {
+        MemberVO snsMember = memberDAO.selectBySns(snsUser);
+
+        if (snsMember != null) {
+            return snsMember;
+        }
+
+        int emailCount = memberDAO.countEmail(snsUser.getEmail());
+
+        if (emailCount > 0) {
+            throw new Exception("이미 존재합니다. (자동 연동 구현하기 / 이메일 받기)");
+        }
+
+        snsUser.setLoginId(snsUser.getEmail());
+
+        String tempPassword = java.util.UUID.randomUUID().toString();
+        snsUser.setPassword(passwordEncoder.encode(tempPassword));
+
+        memberDAO.insertMember(snsUser);
+
+        return memberDAO.selectBySns(snsUser);
+    }
 }

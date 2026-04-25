@@ -3,7 +3,7 @@ package lms.member.service;
 import java.util.List;
 import lms.model.MemberVO;
 
-public interface AdminMemberService {
+public interface AdminService {
     
     // 전체 회원 목록 조회
     List<MemberVO> getMemberList();

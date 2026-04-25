@@ -11,10 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import lms.member.service.OauthService;
+import lms.member.service.OAuthService;
 
 @Service
-public class KakaoOauthService implements OauthService {
+public class KakaoOAuthService implements OAuthService {
 
     @Value("${kakao.client.id}")
     private String clientId;
@@ -88,7 +88,6 @@ public class KakaoOauthService implements OauthService {
         URL url = new URL(apiURL);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
-
         con.setRequestProperty("Authorization", "Bearer " + accessToken);
 
         int responseCode = con.getResponseCode();

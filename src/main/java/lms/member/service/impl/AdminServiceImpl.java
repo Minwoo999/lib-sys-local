@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lms.member.dao.MemberDAO;
-import lms.member.service.AdminMemberService;
+import lms.member.service.AdminService;
 import lms.model.MemberVO;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-public class AdminMemberServiceImpl implements AdminMemberService {
+public class AdminServiceImpl implements AdminService {
 
     private final MemberDAO memberDAO;
 
