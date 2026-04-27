@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lms.model.MemberVO;
+
 public interface OAuthService {
 
     // 1. 요청 URL 생성
@@ -14,7 +16,7 @@ public interface OAuthService {
     String getAccessToken(HttpSession session, String code, String state) throws Exception;
 
     // 3. toekn을 이용해 프로필 정보 조회
-    String getUserProfile(String accessToken) throws Exception;
+    MemberVO getUserProfile(String accessToken) throws Exception;
 
 
 

@@ -11,7 +11,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lms.member.service.OAuthService;
+import lms.model.MemberVO;
 
 @Service("naverOauthService")
 public class NaverOAuthService implements OAuthService {
@@ -41,6 +45,8 @@ public class NaverOAuthService implements OAuthService {
 
         return url.toString();
     }
+
+    // 콜백으로 받음
 
     // 2. 토큰발급
     @Override
@@ -80,13 +86,18 @@ public class NaverOAuthService implements OAuthService {
         br.close();
 
         String jsonResponse = res.toString();
-        return extractProperty(jsonResponse, "access_token");
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode rootNode = mapper.readTree(jsonResponse);
+        JsonNode node = rootNode.get("access_token");
+
+        return node.asText();
     }
 
 
     // 3. 프로필 가져오기
     @Override
-    public String getUserProfile(String accessToken) throws Exception {
+    public MemberVO getUserProfile(String accessToken) throws Exception {
         String apiURL = "https://openapi.naver.com/v1/nid/me";
 
         URL url = new URL(apiURL);
@@ -110,6 +121,19 @@ public class NaverOAuthService implements OAuthService {
         }
         br.close();
 
-        return res.toString();
+        String jsonResponse = res.toString();
+       
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode rootNode = mapper.readTree(jsonResponse);
+        JsonNode responseNode = rootNode.get("response");
+
+  
+        MemberVO vo = mapper.treeToValue(responseNode, MemberVO.class);
+
+        vo.setLoginType(1);
+        
+
+        return vo;
     }
 }
+

@@ -2,7 +2,6 @@ package lms.member.service.impl;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lms.member.dao.MemberDAO;
 import lms.member.service.MemberService;

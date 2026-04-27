@@ -11,7 +11,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lms.member.service.OAuthService;
+import lms.model.MemberVO;
 
 @Service
 public class KakaoOAuthService implements OAuthService {
@@ -82,7 +86,7 @@ public class KakaoOAuthService implements OAuthService {
     }
 
     @Override
-    public String getUserProfile(String accessToken) throws Exception {
+    public MemberVO getUserProfile(String accessToken) throws Exception {
         String apiURL = "https://kapi.kakao.com/v2/user/me";
 
         URL url = new URL(apiURL);
@@ -106,6 +110,27 @@ public class KakaoOAuthService implements OAuthService {
         }
         br.close();
 
-        return res.toString();
+        String jsonResponse = res.toString();
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode rootNode = mapper.readTree(jsonResponse);
+  
+        MemberVO vo = new MemberVO();
+
+        vo.setLoginId(rootNode.get("id").asText());
+
+        JsonNode accountNode = rootNode.get("kakao_account");
+        if (accountNode != null) {
+            vo.setEmail(accountNode.path("email").asText()); 
+
+    
+            JsonNode profileNode = accountNode.get("profile");
+            if (profileNode != null) {
+                vo.setName(profileNode.path("nickname").asText()); 
+            }
+        }
+
+        vo.setLoginType(2); 
+        return vo;
     }
 }
