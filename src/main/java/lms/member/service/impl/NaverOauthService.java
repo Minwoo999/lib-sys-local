@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lms.member.service.OAuthService;
 import lms.model.MemberVO;
 
-@Service("naverOauthService")
+@Service("naverOAuthService")
 public class NaverOAuthService implements OAuthService {
 
     @Value("${naver.client.id}")

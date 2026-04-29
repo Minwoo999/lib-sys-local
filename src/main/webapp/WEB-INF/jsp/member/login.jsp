@@ -24,6 +24,20 @@
         </button>
     </form>
 
+
+    
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+    <%-- 3. 소셜 로그인(OAuth) 버튼 영역 --%>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a href="<c:url value='/OAuth/login/kakao.do'/>" style="display: block; text-align: center; padding: 10px; background-color: #FEE500; color: #3C1E1E; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            카카오 로그인
+        </a>
+        <a href="<c:url value='/OAuth/login/naver.do'/>" style="display: block; text-align: center; padding: 10px; background-color: #03C75A; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            네이버 로그인
+        </a>
+    </div>
+
+
     <div style="margin-top: 15px; text-align: center; font-size: 0.9em;">
         아직 회원이 아니신가요? <a href="<c:url value='/member/join.do'/>">회원가입</a>
     </div>

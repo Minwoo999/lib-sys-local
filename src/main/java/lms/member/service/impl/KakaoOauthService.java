@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lms.member.service.OAuthService;
 import lms.model.MemberVO;
 
-@Service
+@Service("kakaoOAuthService")
 public class KakaoOAuthService implements OAuthService {
 
     @Value("${kakao.client.id}")

@@ -24,6 +24,7 @@
             <mvc:exclude-mapping path="/member/join.do"/>
             <mvc:exclude-mapping path="/book/list.do"/>
             <mvc:exclude-mapping path="/book/detail.do"/>
+            <mvc:exclude-mapping path="/OAuth/**"/>
 
             <bean class="lms.common.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
