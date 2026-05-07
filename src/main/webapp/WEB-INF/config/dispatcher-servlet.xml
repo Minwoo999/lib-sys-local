@@ -18,6 +18,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <!-- <mvc:mapping path="/**"/> -->
+            <mvc:mapping path="/this/is/dummy/path/never/used"/>
 
             <mvc:exclude-mapping path="/index.do"/>
             <mvc:exclude-mapping path="/member/login.do"/>

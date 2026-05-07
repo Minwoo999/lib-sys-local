@@ -1,7 +1,9 @@
 package lms.member.web;
 
 import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,7 +66,7 @@ public class OAuthController {
 
             session.setAttribute("loginUser", loginMember);
 
-            return "redirect:/oauth/index.do";
+            return "redirect:/lib-sys/index.do";
         }
         catch(Exception e){
             return "redirect:/member/login.do?error=true";
