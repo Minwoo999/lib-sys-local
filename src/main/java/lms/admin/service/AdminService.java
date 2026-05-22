@@ -1,4 +1,4 @@
-package lms.member.service;
+package lms.admin.service;
 
 import java.util.List;
 import lms.model.MemberVO;

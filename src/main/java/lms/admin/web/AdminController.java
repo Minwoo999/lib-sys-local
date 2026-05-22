@@ -1,4 +1,4 @@
-package lms.member.web;
+package lms.admin.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lms.member.service.AdminService;
+import lms.admin.service.AdminService;
 import lms.model.MemberVO;
 import lombok.RequiredArgsConstructor;
 

@@ -68,17 +68,5 @@
     FROM MEMBER
     WHERE EMAIL=#{email}
     </select>
-    
-
-
-
-    <!-- 관리자 -->
-
-    <!-- 2. 회원 목록 조회 -->
-    <select id="selectMemberList" resultType="Member">
-    SELECT MEMBER_ID, LOGIN_ID, NAME, EMAIL, PHONE, MEMBER_STATUS, IS_ADMIN, MEMBER_REG_DATE
-    FROM MEMBER
-    ORDER BY MEMBER_REG_DATE DESC
-    </select>
 
 </mapper>

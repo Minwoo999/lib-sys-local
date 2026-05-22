@@ -1,12 +1,13 @@
-package lms.member.service.impl;
+package lms.admin.service.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lms.admin.dao.AdminDAO;
+import lms.admin.service.AdminService;
 import lms.member.dao.MemberDAO;
-import lms.member.service.AdminService;
 import lms.model.MemberVO;
 import lombok.RequiredArgsConstructor;
 
@@ -16,12 +17,13 @@ import lombok.RequiredArgsConstructor;
 public class AdminServiceImpl implements AdminService {
 
     private final MemberDAO memberDAO;
+    private final AdminDAO adminDAO;
 
     // 전체 목록 조회
     @Override
     @Transactional(readOnly = true)
     public List<MemberVO> getMemberList() {
-        return memberDAO.selectMemberList();
+        return adminDAO.selectMemberList();
     }
 
     // 상태 변경

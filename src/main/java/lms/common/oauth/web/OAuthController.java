@@ -1,4 +1,4 @@
-package lms.member.web;
+package lms.common.oauth.web;
 
 import java.util.Map;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lms.common.oauth.service.OAuthService;
 import lms.member.service.MemberService;
-import lms.member.service.OAuthService;
 import lms.model.MemberVO;
 
 @Controller
