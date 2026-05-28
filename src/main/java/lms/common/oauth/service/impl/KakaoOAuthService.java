@@ -54,6 +54,10 @@ public class KakaoOAuthService implements OAuthService {
             throw new Exception("보안 인증값이 일치하지 않습니다.");
         }
 
+        //
+        // POST 양식에 맞는지 검증하기
+        //
+
         StringBuilder apiURL = new StringBuilder();
         apiURL.append("https://kauth.kakao.com/oauth/token");
         apiURL.append("?grant_type=authorization_code");

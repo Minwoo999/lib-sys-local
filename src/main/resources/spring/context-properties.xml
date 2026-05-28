@@ -5,6 +5,7 @@
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<context:property-placeholder location="classpath:props/oauth.properties" />
+	<context:property-placeholder location="classpath:props/captcha.properties"/>
 
 </beans>
 

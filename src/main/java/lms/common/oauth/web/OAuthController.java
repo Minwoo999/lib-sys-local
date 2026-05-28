@@ -31,16 +31,13 @@ public class OAuthController {
 
     @GetMapping("/login/{type}.do")
     public String login(@PathVariable String type, HttpSession session) {
-        // 🔍 자백제 1: 여기까지 들어오긴 하는가?
+    
         System.out.println(">>> [STEP 1] 컨트롤러 진입 성공! 요청된 타입: " + type);
-
-        // 🔍 자백제 2: 주머니에 서비스들이 담겨 있긴 한가? (여기 비어있으면 설정 문제)
         System.out.println(">>> [STEP 2] 주머니(Map)에 있는 서비스들: " + oauthServiceMap.keySet());
 
         String serviceName = type + "OAuthService";
         OAuthService service = oauthServiceMap.get(serviceName);
 
-        // 🔍 자백제 3: 꺼내온 놈이 살아 있는가?
         if (service == null) {
             System.out.println(">>> [ERROR] 서비스를 못 찾았습니다! 찾으려던 이름: " + serviceName);
             return "redirect:/member/login.do?error=serviceNotFound";
