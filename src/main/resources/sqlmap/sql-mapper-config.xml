@@ -14,18 +14,18 @@
 		<typeAlias alias="BookUser" type="lms.model.BookUserDTO"/>
 		<typeAlias alias="BookEnt" type="lms.model.entity.Book"/>
 		<typeAlias alias="Member" type="lms.model.MemberVO"/>
+		<typeAlias alias="Loan" type="lms.model.LoanVO"/>
 
 
-		<!-- <typeAlias alias="Loan" type="lms.model.LoanVO"/>
-		<typeAlias alias="Reservation" type="lms.model.ReservationVO"/>
-		<typeAlias alias="Category" type="lms.model.CategoryVO"/>
-		<typeAlias alias="Review" type="lms.model.ReviewVO"/>
+		<!-- <typeAlias alias="Reservation" type="lms.model.ReservationVO"/> -->
+		<!-- <typeAlias alias="Category" type="lms.model.CategoryVO"/> -->
+		<!-- <typeAlias alias="Review" type="lms.model.ReviewVO"/> -->
 
-		<typeAlias alias="MemberEnt" type="lms.model.entity.Member"/>
-		<typeAlias alias="LoanEnt" type="lms.model.entity.Loan"/>
-		<typeAlias alias="ReservationEnt" type="lms.model.entity.Reservation"/>
-		<typeAlias alias="CategoryEnt" type="lms.model.entity.Category"/>
-		<typeAlias alias="ReviewEnt" type="lms.model.entity.Review"/> -->
+		<!-- <typeAlias alias="MemberEnt" type="lms.model.entity.Member"/> -->
+		<!-- <typeAlias alias="LoanEnt" type="lms.model.entity.Loan"/> -->
+		<!-- <typeAlias alias="ReservationEnt" type="lms.model.entity.Reservation"/> -->
+		<!-- <typeAlias alias="CategoryEnt" type="lms.model.entity.Category"/> -->
+		<!-- <typeAlias alias="ReviewEnt" type="lms.model.entity.Review"/> -->
 	</typeAliases>
 
 </configuration>

@@ -1,7 +1,9 @@
 package lms.member.web;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lms.common.captcha.service.CaptchaService;
 import lms.member.service.MemberService;
 import lms.model.MemberVO;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,9 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @Qualifier("captchaService")
+    private final CaptchaService captchaService;
+
     // 1. 로그인
     @GetMapping("/login.do")
     public String loginForm() {
@@ -27,7 +33,16 @@ public class MemberController {
     }
 
     @PostMapping("/login.do")
-    public String login(MemberVO vo, HttpSession session, RedirectAttributes ra) {
+    public String login(HttpServletRequest request, MemberVO vo, HttpSession session, RedirectAttributes ra) {
+
+        // 1) 캡차 검증
+        String token = request.getParameter("g-recaptcha-response");
+        if (!captchaService.verifyCaptcha(token)) {
+            request.setAttribute("msg", "토큰 발급 실패");
+            return "member/login";
+        }
+
+
         try {
             MemberVO loginUser = memberService.login(vo);
             session.setAttribute("loginUser", loginUser);
