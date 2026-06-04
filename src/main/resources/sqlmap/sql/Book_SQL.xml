@@ -57,4 +57,20 @@
         WHERE BOOK_ID = #{bookId}
     </update>
 
+    <!-- 대출 / 반납 -->
+    <update id="increaseCurrentCnt">
+    UPDATE BOOK
+    SET CURRENT_CNT = CURRENT_CNT +1
+    WHERE BOOK_ID = #{bookId}
+    AND CURRENT_CNT  < TOTAL_CNT
+    </update>
+
+    <update id="decreaseCurrentCnt">
+    UPDATE BOOK
+    SET CURRENT_CNT = CURRENT_CNT -1
+    WHERE BOOK_ID = #{bookId}
+    AND CURRENT_CNT > 0
+    </update>
+
+
 </mapper>

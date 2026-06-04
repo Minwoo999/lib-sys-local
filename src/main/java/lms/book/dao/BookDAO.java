@@ -45,4 +45,13 @@ public class BookDAO extends EgovAbstractMapper {
     public int deleteBook(int bookId) {
         return delete("BookDAO.deleteBook", bookId);
     }
+
+    // 대출 / 반납
+    public int decreaseCurrentCnt(int bookId) {
+        return update("BookDAO.decreaseCurrentCnt", bookId);
+    }
+
+    public int increaseCurrentCnt(int bookId) {
+        return update("BookDAO.increaseCurrentCnt", bookId);
+    }
 }

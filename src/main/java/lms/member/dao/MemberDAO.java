@@ -60,4 +60,13 @@ public class MemberDAO extends EgovAbstractMapper {
     public int countEmail(String email) {
         return selectOne("MemberDAO.countEmail", email);
     }
+
+    // 대출 / 반납
+    public int increaseCurrentLoanCnt(MemberVO memberVO) {
+        return update("MemberDAO.increaseCurrentLoanCnt", memberVO);
+    }
+
+    public int decreaseCurrentLoanCnt(int memberId) {
+        return update("MemberDAO.decreaseCurrentLoanCnt", memberId);
+    }
 }

@@ -69,4 +69,19 @@
     WHERE EMAIL=#{email}
     </select>
 
+    <!-- 8. 대출 / 반납  -->
+    <update id="increaseCurrentLoanCnt">
+    UPDATE MEMBER
+    SET CURRENT_LOAN_CNT = CURRENT_LOAN_CNT +1
+    WHERE MEMBER_ID = #{memberId}
+    AND CURRENT_LOAN_CNT &lt; #{maxLoanCnt}
+    </update>
+
+    <update id="decreaseCurrentLoanCnt">
+    UPDATE MEMBER
+    SET CURRENT_LOAN_CNT = CURRENT_LOAN_CNT -1
+    WHERE MEMBER_ID = #{memberId}
+    AND CURRENT_LOAN_CNT &gt; 0
+    </update>
+
 </mapper>
