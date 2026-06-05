@@ -62,7 +62,7 @@ public class MemberDAO extends EgovAbstractMapper {
     }
 
     // 대출 / 반납
-    public int increaseCurrentLoanCnt(MemberVO memberVO) {
+    public int increaseCurrentLoanCnt(int memberId) {
         return update("MemberDAO.increaseCurrentLoanCnt", memberVO);
     }
 
