@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3.0.dtd">
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
     <!-- 1. 도서 목록 페이지 -->
@@ -12,4 +12,26 @@
 <definition name="book/detail" extends="baseLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/book/detail.jsp"/>
     </definition>
+
+    <!-- 3. 관리자 도서 목록 -->
+    <definition name="book/adminList" extends="adminLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/book/adminList.jsp"/>
+    </definition>
+
+    <!-- 4. 관리자 도서 상세 -->
+    <definition name="book/adminDetail" extends="adminLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/book/adminDetail.jsp"/>
+    </definition>
+
+    <!-- 5. 도서 등록 -->
+    <definition name="book/register" extends="adminLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/book/register.jsp"/>
+    </definition>
+
+    <!-- 6. 도서 수정 -->
+    <definition name="book/modify" extends="adminLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/book/modify.jsp"/>
+    </definition>
 </tiles-definitions>
+
+
