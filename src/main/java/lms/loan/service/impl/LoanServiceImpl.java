@@ -26,7 +26,7 @@ public class LoanServiceImpl implements LoanService {
         int bookResult = bookDAO.decreaseCurrentCnt(loanVO.getBookId());
         
         if (bookResult == 0) {
-            throw new BookOutOfStockException("선택하신 도서의 재고가 부족합니다");
+//            throw new BookOutOfStockException("선택하신 도서의 재고가 부족합니다");
         }
 
 

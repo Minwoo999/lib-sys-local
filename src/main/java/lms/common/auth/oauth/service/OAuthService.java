@@ -1,4 +1,4 @@
-package lms.common.oauth.service;
+package lms.common.auth.oauth.service;
 
 import javax.servlet.http.HttpSession;
 

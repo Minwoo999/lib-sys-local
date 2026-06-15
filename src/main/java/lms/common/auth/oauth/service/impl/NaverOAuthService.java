@@ -1,4 +1,4 @@
-package lms.common.oauth.service.impl;
+package lms.common.auth.oauth.service.impl;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lms.common.oauth.service.OAuthService;
+import lms.common.auth.oauth.service.OAuthService;
 import lms.model.MemberVO;
 
 @Service("naverOAuthService")

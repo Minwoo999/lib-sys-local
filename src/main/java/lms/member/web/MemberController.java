@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lms.common.captcha.service.CaptchaService;
+import lms.common.auth.captcha.service.CaptchaService;
 import lms.member.service.MemberService;
 import lms.model.MemberVO;
 import lombok.RequiredArgsConstructor;

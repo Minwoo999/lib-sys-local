@@ -1,4 +1,4 @@
-package lms.common.interceptor;
+package lms.common.auth.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

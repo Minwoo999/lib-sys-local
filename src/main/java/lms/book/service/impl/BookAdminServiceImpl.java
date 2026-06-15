@@ -3,12 +3,12 @@ package lms.book.service.impl;
 import org.springframework.stereotype.Service;
 
 import lms.book.dao.BookDAO;
+import lms.book.service.BookAdminService;
 import lms.model.BookAdminDTO.BookDetailAdminResponse;
 import lms.model.BookAdminDTO.BookModifyDetailRequest;
 import lms.model.BookAdminDTO.BookModifyStatusRequest;
 import lms.model.BookAdminDTO.BookRegisterRequest;
 import lms.model.entity.Book;
-import lms.book.service.BookAdminService;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -46,4 +46,5 @@ public class BookAdminServiceImpl implements BookAdminService {
     public int removeBook(int bookId) {
         return bookDAO.deleteBook(bookId);
     }
+
 }

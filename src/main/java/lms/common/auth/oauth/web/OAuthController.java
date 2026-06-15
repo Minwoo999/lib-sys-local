@@ -1,4 +1,4 @@
-package lms.common.oauth.web;
+package lms.common.auth.oauth.web;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import lms.common.oauth.service.OAuthService;
+import lms.common.auth.oauth.service.OAuthService;
 import lms.member.service.MemberService;
 import lms.model.MemberVO;
 
@@ -31,20 +31,15 @@ public class OAuthController {
 
     @GetMapping("/login/{type}.do")
     public String login(@PathVariable String type, HttpSession session) {
-    
-        System.out.println(">>> [STEP 1] 컨트롤러 진입 성공! 요청된 타입: " + type);
-        System.out.println(">>> [STEP 2] 주머니(Map)에 있는 서비스들: " + oauthServiceMap.keySet());
 
         String serviceName = type + "OAuthService";
         OAuthService service = oauthServiceMap.get(serviceName);
 
         if (service == null) {
-            System.out.println(">>> [ERROR] 서비스를 못 찾았습니다! 찾으려던 이름: " + serviceName);
             return "redirect:/member/login.do?error=serviceNotFound";
         }
 
         String authUrl = service.getAuthorizationUrl(session);
-        System.out.println(">>> [STEP 3] 네이버/카카오로 보내줄 주소: " + authUrl);
 
         return "redirect:" + authUrl;
     }
