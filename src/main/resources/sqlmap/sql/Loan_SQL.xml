@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="lms.loan.dao.loan.LoanDAO">
+<mapper namespace="lms.loan.dao.LoanDAO">
 
 <insert id="insertLoanRecord" useGeneratedKeys="true" keyProperty="loanId" keyColumn="LOAN_ID">
 INSERT INTO LOAN(LOAN_ID, MEMBER_ID, BOOK_ID)
@@ -20,3 +20,4 @@ SET DUE_DATE = DUE_DATE + #{extendDate}
 WHERE LOAN_ID = #{loanId}
 </update>
 
+</mapper>

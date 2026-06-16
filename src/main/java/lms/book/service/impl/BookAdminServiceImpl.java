@@ -1,5 +1,7 @@
 package lms.book.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lms.book.dao.BookDAO;
@@ -13,10 +15,15 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-
 public class BookAdminServiceImpl implements BookAdminService {
 
     private final BookDAO bookDAO;
+
+    @Override
+    public List<Book> getBookList() {
+        // 전체 목록 조회 (페이징 제거한 별도 DAO 메서드로 교체 예정)
+        return bookDAO.selectBookList(null);
+    }
 
     @Override
     public BookDetailAdminResponse getDetail(int bookId) {

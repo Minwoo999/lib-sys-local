@@ -3,29 +3,35 @@
 
 <configuration>
 
-	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
 
-	<typeAliases>
-		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+    <typeAliases>
+        <typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 
-		<typeAlias alias="BookAdmin" type="lms.model.BookAdminDTO"/>
-		<typeAlias alias="BookUser" type="lms.model.BookUserDTO"/>
-		<typeAlias alias="BookEnt" type="lms.model.entity.Book"/>
-		<typeAlias alias="Member" type="lms.model.MemberVO"/>
-		<typeAlias alias="Loan" type="lms.model.LoanVO"/>
+        <!-- DTO (UI layer) -->
+        <typeAlias alias="BookAdmin" type="lms.model.BookAdminDTO"/>
+        <typeAlias alias="BookUser" type="lms.model.BookUserDTO"/>
+        <typeAlias alias="ReservationDTO" type="lms.model.ReservationDTO"/>
+        <typeAlias alias="ReviewDTO" type="lms.model.ReviewDTO"/>
+        <typeAlias alias="CategoryDTO" type="lms.model.CategoryDTO"/>
 
+        <!-- VO (DB query/insert) -->
+        <typeAlias alias="Member" type="lms.model.MemberVO"/>
+        <typeAlias alias="Loan" type="lms.model.LoanVO"/>
+        <typeAlias alias="Reservation" type="lms.model.ReservationVO"/>
+        <typeAlias alias="Category" type="lms.model.CategoryVO"/>
+        <typeAlias alias="Review" type="lms.model.ReviewVO"/>
 
-		<!-- <typeAlias alias="Reservation" type="lms.model.ReservationVO"/> -->
-		<!-- <typeAlias alias="Category" type="lms.model.CategoryVO"/> -->
-		<!-- <typeAlias alias="Review" type="lms.model.ReviewVO"/> -->
+        <!-- Entity -->
+        <typeAlias alias="BookEnt" type="lms.model.entity.Book"/>
+        <typeAlias alias="MemberEnt" type="lms.model.entity.Member"/>
+        <typeAlias alias="LoanEnt" type="lms.model.entity.Loan"/>
+        <typeAlias alias="ReservationEnt" type="lms.model.entity.Reservation"/>
+        <typeAlias alias="CategoryEnt" type="lms.model.entity.Category"/>
+        <typeAlias alias="ReviewEnt" type="lms.model.entity.Review"/>
 
-		<!-- <typeAlias alias="MemberEnt" type="lms.model.entity.Member"/> -->
-		<!-- <typeAlias alias="LoanEnt" type="lms.model.entity.Loan"/> -->
-		<!-- <typeAlias alias="ReservationEnt" type="lms.model.entity.Reservation"/> -->
-		<!-- <typeAlias alias="CategoryEnt" type="lms.model.entity.Category"/> -->
-		<!-- <typeAlias alias="ReviewEnt" type="lms.model.entity.Review"/> -->
-	</typeAliases>
+    </typeAliases>
 
 </configuration>

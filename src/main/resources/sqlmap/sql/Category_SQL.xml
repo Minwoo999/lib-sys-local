@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lms.category.dao.CategoryDAO">
+
+    <select id="selectAllCategories" resultType="CategoryVO">
+        SELECT CATEGORY_ID, CATEGORY_CODE, CATEGORY_NAME, DESCRIPTION
+        FROM CATEGORY
+        ORDER BY CATEGORY_CODE ASC
+    </select>
+
+    <select id="selectById" parameterType="int" resultType="CategoryVO">
+        SELECT * FROM CATEGORY
+        WHERE CATEGORY_ID = #{categoryId}
+    </select>
+
+    <insert id="insertCategory" parameterType="CategoryVO" useGeneratedKeys="true" keyProperty="categoryId" keyColumn="CATEGORY_ID">
+        INSERT INTO CATEGORY (CATEGORY_CODE, CATEGORY_NAME, DESCRIPTION)
+        VALUES (#{categoryCode}, #{categoryName}, #{description})
+    </insert>
+
+    <update id="updateCategory" parameterType="CategoryVO">
+        UPDATE CATEGORY
+        <set>
+            <if test="categoryName != null">CATEGORY_NAME = #{categoryName},</if>
+            <if test="description != null">DESCRIPTION = #{description},</if>
+        </set>
+        WHERE CATEGORY_ID = #{categoryId}
+    </update>
+
+    <delete id="deleteCategory" parameterType="int">
+        DELETE FROM CATEGORY
+        WHERE CATEGORY_ID = #{categoryId}
+    </delete>
+
+</mapper>

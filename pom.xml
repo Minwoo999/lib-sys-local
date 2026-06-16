@@ -135,21 +135,13 @@
             <version>${spring.maven.artifact.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>5.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>5.7.12</version>
-        </dependency>
+        <!-- Only crypto JAR — no Servlet API dependency. Provides BCryptPasswordEncoder for MemberServiceImpl + SecurityConfig -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
             <version>5.7.12</version>
         </dependency>
+
 
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
@@ -258,15 +250,18 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.2</version>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.4.56.v20240826</version>
                     <configuration>
-                        <port>80</port>
-                        <path>/</path>
-                        <systemProperties>
-                            <JAVA_OPTS>-Xms256m -Xmx768m -XX:MaxPermSize=256m</JAVA_OPTS>
-                        </systemProperties>
+                        <httpConnector>
+                            <port>8080</port>
+                        </httpConnector>
+                        <webApp>
+                            <contextPath>/</contextPath>
+                        </webApp>
+                        <!-- Hot-reload: scan every 1s -->
+                        <scanIntervalSeconds>1</scanIntervalSeconds>
                     </configuration>
                 </plugin>
                 <plugin>

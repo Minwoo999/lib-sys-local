@@ -27,13 +27,13 @@
             <mvc:exclude-mapping path="/book/detail.do"/>
             <mvc:exclude-mapping path="/OAuth/**"/>
 
-            <bean class="lms.common.interceptor.LoginInterceptor"/>
+            <bean class="lms.common.auth.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
 
         <mvc:interceptor>
             <mvc:mapping path="/admin/**"/>
 
-            <bean class="lms.common.interceptor.AdminInterceptor"/>
+            <bean class="lms.common.auth.interceptor.AdminInterceptor"/>
         </mvc:interceptor>
 
     </mvc:interceptors>

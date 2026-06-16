@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lms.reservation.dao.ReservationDAO">
+
+    <insert id="insertReservation" useGeneratedKeys="true" keyProperty="reservationId" keyColumn="RESERVATION_ID">
+        INSERT INTO RESERVATION (MEMBER_ID, BOOK_ID, STATUS)
+        VALUES (#{memberId}, #{bookId}, 'STANDING_BY')
+    </insert>
+
+    <select id="selectByMemberId" parameterType="int" resultType="Reservation">
+        SELECT * FROM RESERVATION
+        WHERE MEMBER_ID = #{memberId}
+        ORDER BY RESERVATION_DATE DESC
+    </select>
+
+    <select id="selectByBookId" parameterType="int" resultType="Reservation">
+        SELECT * FROM RESERVATION
+        WHERE BOOK_ID = #{bookId}
+        ORDER BY RESERVATION_DATE ASC
+    </select>
+
+    <select id="selectListByStatus" parameterType="string" resultType="Reservation">
+        SELECT * FROM RESERVATION
+        WHERE STATUS = #{status}
+        ORDER BY RESERVATION_DATE DESC
+    </select>
+
+    <delete id="deleteReservation" parameterType="int">
+        DELETE FROM RESERVATION
+        WHERE RESERVATION_ID = #{reservationId}
+    </delete>
+
+</mapper>

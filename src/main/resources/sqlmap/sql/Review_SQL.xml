@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lms.review.dao.ReviewDAO">
+
+    <insert id="insertReview" parameterType="ReviewVO" useGeneratedKeys="true" keyProperty="reviewId" keyColumn="REVIEW_ID">
+        INSERT INTO REVIEW (MEMBER_ID, BOOK_ID, RATING, CONTENT)
+        VALUES (#{memberId}, #{bookId}, #{rating}, #{content})
+    </insert>
+
+    <select id="selectByBookId" parameterType="int" resultType="ReviewVO">
+        SELECT * FROM REVIEW
+        WHERE BOOK_ID = #{bookId}
+        ORDER BY REVIEW_REG_DATE DESC
+    </select>
+
+    <select id="selectByMemberIdAndBookId" parameterType="egovMap" resultType="ReviewVO">
+        SELECT * FROM REVIEW
+        WHERE MEMBER_ID = #{memberId} AND BOOK_ID = #{bookId}
+    </select>
+
+    <select id="selectListByBookIdWithPage" parameterType="map" resultType="ReviewVO">
+        SELECT * FROM (
+            SELECT T.*, ROWNUM AS RNUM FROM (
+                SELECT REVIEW_ID, MEMBER_ID, BOOK_ID, RATING, CONTENT
+                FROM REVIEW
+                WHERE BOOK_ID = #{bookId}
+                ORDER BY REVIEW_REG_DATE DESC
+            ) T
+            <![CDATA[
+            WHERE ROWNUM <= #{firstIndex} + #{recordCount}
+            ]]>
+        )
+        WHERE RNUM > #{firstIndex}
+    </select>
+
+    <delete id="deleteReview" parameterType="int">
+        DELETE FROM REVIEW
+        WHERE REVIEW_ID = #{reviewId}
+    </delete>
+
+</mapper>
