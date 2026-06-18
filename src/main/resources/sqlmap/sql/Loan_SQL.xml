@@ -3,20 +3,61 @@
 
 <mapper namespace="lms.loan.dao.loan.LoanDAO">
 
+
+<!-- 1. 대출로그 -->
 <insert id="insertLoanRecord" useGeneratedKeys="true" keyProperty="loanId" keyColumn="LOAN_ID">
 INSERT INTO LOAN(LOAN_ID, MEMBER_ID, BOOK_ID)
 VALUES(#{loanId}, #{memberId}, #{bookId})
 </insert>
 
+<!-- 2. 반납 일자 -->
 <update id="updateReturnDate">
 UPDATE LOAN
 SET RETURN_DATE = SYSDATE, STATUS = 'RETURNED'
 WHERE LOAN_ID = #{loanId}
 </update>
 
+
+<!-- 3. 기간연장 -->
 <update id="updateDueDate">
 UPDATE LOAN
 SET DUE_DATE = DUE_DATE + #{extendDate}
 WHERE LOAN_ID = #{loanId}
 </update>
+
+
+<!-- 4. 대출 이력 조회 -->
+<select id="selectLoanListByMmeberId" resultType="LoanVO"> 
+SELECT 
+    L.LOAN_ID,
+    L.LOAN_DATE,
+    L.DUE_DATE,
+    L.RETURN_DATE,
+    L.STATUS
+    B.TILTE,
+    B.AUTHOR
+FROM LOAN L
+INNER JOIN BOOK B
+    ON L.BOOK_ID = B.BOOK_ID
+WHERE MEMBER_ID =#{memberId}
+</select>
+
+<!-- 5. 연체 도서 조회 -->
+<select id="selectOverdueLoan" resultType="LoanVO">
+SELECT
+    L.LOAN_ID,
+    L.LOAN_DATE,
+    L.DUE_DATE,
+    B.TITLE,
+    M.MEMBER_ID,
+    M.NAME,
+    M.PHONE
+FROM LOAN L
+INNER JOIN BOOK B
+    ON L.BOOK_ID = B.BOOK_ID
+INNER JOIN
+    MEMBER M ON L.MEMBER_ID = M.MEMBER_ID
+
+</select>
+</mapper>
 

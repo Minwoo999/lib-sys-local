@@ -19,5 +19,7 @@ public class LoanVO {
     LocalDateTime returnDate;
     String status;
 
-    MemberVO member;
+    MemberVO memberVO;
+    BookVO bookVO;
+
 }
