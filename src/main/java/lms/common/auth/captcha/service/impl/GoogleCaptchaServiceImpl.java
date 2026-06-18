@@ -1,4 +1,4 @@
-package lms.common.captcha.service.impl;
+package lms.common.auth.captcha.service.impl;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -9,7 +9,7 @@ import java.net.URL;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import lms.common.captcha.service.CaptchaService;
+import lms.common.auth.captcha.service.CaptchaService;
 
 
 @Service("captchaService")

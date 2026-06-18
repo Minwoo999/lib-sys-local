@@ -1,4 +1,4 @@
-package lms.common.captcha.service;
+package lms.common.auth.captcha.service;
 
 public interface CaptchaService {
     
